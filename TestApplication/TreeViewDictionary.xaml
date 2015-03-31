@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:model="clr-namespace:TestApplication.Model">
+    <HierarchicalDataTemplate DataType="{x:Type model:ObjectInfrastructure}" ItemsSource="{Binding Sets}">
+        <TextBlock FontSize="20" Text="{Binding Name}"></TextBlock>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type model:Set}" ItemsSource="{Binding Documents}">
+        <TextBlock FontSize="18" Text="{Binding Name}"></TextBlock>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type model:Document}" ItemsSource="{Binding FileInfos}">
+        <TextBlock FontSize="16" Text="{Binding Name}"></TextBlock>
+    </HierarchicalDataTemplate>
+    <HierarchicalDataTemplate DataType="{x:Type model:FileInfo}">
+        <TextBlock FontSize="14" Text="{Binding Name}"></TextBlock>
+    </HierarchicalDataTemplate>
+</ResourceDictionary>

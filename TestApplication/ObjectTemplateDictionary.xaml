@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:model="clr-namespace:TestApplication.Model">
+   
+    <Style TargetType="TextBox">
+        <Setter Property="Margin" Value="2"></Setter>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="BorderBrush" Value="Red"></Setter>
+                <Setter Property="ToolTip"
+        Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="TextBlock">
+        <Setter Property="Margin" Value="2"></Setter>
+    </Style>
+    <Style TargetType="DatePicker">
+        <Setter Property="Margin" Value="2"></Setter>
+    </Style>
+    <Style x:Key="StyleHeader">
+        <Setter Property="TextBlock.Margin" Value="10 10 10 20"></Setter>
+        <Setter Property="TextBlock.FontSize" Value="14"></Setter>
+        <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+    </Style>
+    <Style TargetType="ContentPresenter">
+        <Setter Property="Margin" Value="2"></Setter>
+    </Style>
+
+   
+
+    <DataTemplate DataType="{x:Type model:ObjectInfrastructure}">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Style="{StaticResource StyleHeader}">Объект инфраструктуры</TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0">Имя</TextBlock>
+            <TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        </Grid>
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type model:Set}">
+        <StackPanel>
+        <TextBlock Style="{StaticResource StyleHeader}">Коплект</TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0">Имя</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1">Описание</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2">Контракт</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3">Дисциплина</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="4">Номер ревизии</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="5">Дата выпуска ревизии</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="6">Владелец</TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Contract, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Discipline, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding RevisionNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" CharacterCasing="Upper"></TextBox>
+                <DatePicker Grid.Column="1" Grid.Row="5" SelectedDate="{Binding ReleaseDateRevisiony, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
+                <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Owner, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        </Grid>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type model:Document}">
+        <StackPanel>
+            <TextBlock Style="{StaticResource StyleHeader}">Документ</TextBlock>
+            <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0">Имя</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1">Описание</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2">Тип документа</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3">Номер ревизии</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="4">Дата выпуска ревизии</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="5">Владелец</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="6">Количество страниц</TextBlock>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding DocumentType, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding RevisionNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" CharacterCasing="Upper"></TextBox>
+                <DatePicker Grid.Column="1" Grid.Row="4" SelectedDate="{Binding ReleaseDateRevisiony, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
+                <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Owner, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding NumberOfPage, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        </Grid>
+        </StackPanel>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type model:FileInfo}">
+        <StackPanel>
+            <TextBlock Style="{StaticResource StyleHeader}">Файл</TextBlock>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0">Имя</TextBlock>
+                <TextBox Grid.Column="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        </Grid>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>
